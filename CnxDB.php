@@ -10,17 +10,12 @@ private static $_bdd = null;
 private function __construct()
 {
 self::$_dbname = getenv('DB_NAME') ?: 'ooplogin';
-self::$_user = getenv('DB_USER') ?: 'root';
-self::$_pwd = getenv('DB_PASS') ?: '';
+self::$_user = getenv('DB_USER') ?: 'appuser';
+self::$_pwd = getenv('DB_PASS') ?: 'app_password';
 self::$_host = getenv('DB_HOST') ?: '127.0.0.1';
-self::$_socket = getenv('DB_SOCKET') ?: null;
 
 try {
-if (self::$_socket) {
-    $dsn = 'mysql:unix_socket=' . self::$_socket . ';dbname=' . self::$_dbname . ';charset=utf8';
-} else {
-    $dsn = 'mysql:host=' . self::$_host . ';dbname=' . self::$_dbname . ';charset=utf8';
-}
+$dsn = 'mysql:host=' . self::$_host . ';dbname=' . self::$_dbname . ';charset=utf8';
 self::$_bdd = new PDO(
     $dsn,
     self::$_user,
