@@ -39,6 +39,18 @@ Web application for **Kyufi** Coffee shop, offering a unique blend of coffee and
 
    Note: run these `export` commands in the same shell session where you start `php8.3 -S`.
 
+   If you already imported the database, update the `users_tel` column so it can store 10-digit values:
+
+   ```bash
+   sudo mysql -u root -e "ALTER TABLE ooplogin.users MODIFY users_tel VARCHAR(20) NOT NULL;"
+   ```
+
+   Also update the `cart` table to use an auto-increment primary key:
+
+   ```bash
+   sudo mysql -u root -e "ALTER TABLE ooplogin.cart MODIFY cart_id INT(11) NOT NULL AUTO_INCREMENT, ADD PRIMARY KEY (cart_id);"
+   ```
+
 3. Ensure the PHP MySQL extension is installed:
 
    ```bash
